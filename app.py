@@ -1,4 +1,4 @@
-# creating a signup form
+ # creating a signup form
 # importing flask and pymysql
 
 from flask import *
@@ -175,7 +175,7 @@ def mpesa_payment():
         timestamp = datetime.datetime.today().strftime('%Y%m%d%H%M%S') # Current Time
         passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919' # Passkey(Safaricom Provided)
         business_short_code = "174379" # Test Paybile (Safaricom Provided)
-        # Combine above 3 Strings to get data variable
+        # Combine above 3 Strings to get data variable  [getting the pasword]
         data = business_short_code + passkey + timestamp
         # Encode to Base64
         encoded = base64.b64encode(data.encode())
@@ -186,7 +186,7 @@ def mpesa_payment():
         "BusinessShortCode": "174379",
         "Password":password,
         "Timestamp": timestamp,
-        "TransactionType": "CustomerPayBillOnline",
+        "TransactionType": "CustomerPayBillOnline", 
         "Amount": '1', # use 1 when testing
         "PartyA": phone, # change to your number
         "PartyB": "174379",
@@ -202,7 +202,7 @@ def mpesa_payment():
         "Content-Type": "application/json"
         }
 
-        # Specify STK Push Trigger URL
+        # Specify STK Push Trigger URL{stk promp}
         url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
         # Create a POST Request to above url, providing headers, payload
         # Below triggers an STK Push to the phone number indicated in the payload and the amount.
@@ -210,20 +210,6 @@ def mpesa_payment():
         print(response.text) #
         # Give a Response
         return jsonify({"message": "An MPESA Prompt has been sent to Your Phone, Please Check & Complete Payment"})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
